@@ -1,0 +1,68 @@
+using System;
+
+// Załączenie do naszego projektu
+
+namespace GRA_ZGADYWANKA
+{
+
+    // Główna klasa
+    class Program
+    {
+        // Metoda Main
+        static void Main(string[] args)
+
+        {
+            // Przywitanie
+
+            ColoredPrint("Witam Panie Doktorze w Mojej Grze Proszę wybrać liczbę od 0 do 100 a ja ją zgadnę!", ConsoleColor.Red, true);
+
+            //Zmienne
+
+            Random rnd = new Random();
+            int number = rnd.Next(0, 101);
+            int guess = 0,take= 0;
+
+            //Pętla główna gry
+
+            while (guess != number)
+            {
+                guess = Int32.Parse(Console.ReadLine());
+                if (guess > number)
+                {
+                    ColoredPrint("Liczba Wojownika Mateusza jest mniejsza!", ConsoleColor.Yellow, false);
+                    take++;
+                    Console.WriteLine("Dr Krzysztof Molenda dokonuję kolejnej próby: " + take);
+
+                }
+                else if(guess < number)
+                {
+                    ColoredPrint("Liczba Wojownika Mateusza jest większa!", ConsoleColor.Yellow, false);
+                    take++;
+                    Console.WriteLine("Dr Krzysztof Molenda dokonuję kolejnej próby: "+ take);
+                }
+
+
+            }
+
+            ColoredPrint("Gratulację Dr Krzysztof Molenda ZWYCIESTWO!!", ConsoleColor.Cyan, true);
+            ColoredPrint("Ilość Prób: " + take, ConsoleColor.Cyan, true);
+            
+
+
+
+
+            Console.ReadLine();
+
+        }
+
+        static void ColoredPrint(string tekst, ConsoleColor col, bool newline)
+        {
+
+            Console.ForegroundColor = col;
+            if (newline) Console.WriteLine(tekst);
+            else Console.Write(tekst);
+            Console.ResetColor();
+        }
+
+    }
+}
